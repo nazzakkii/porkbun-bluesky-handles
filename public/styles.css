@@ -1,0 +1,99 @@
+
+:root {
+    --background-color: #1e1d1c;
+    --text-color: #efe2c2;
+    --button-color: #d9cdad;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+
+    background-color: var(--background-color);
+}
+
+h1 {
+    color: var(--text-color);
+    margin-bottom: 0;
+}
+
+h2 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+small {
+    color: var(--text-color);
+}
+
+button {
+    background-color: var(--button-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #9b9b9b;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.result {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.success {
+    border: 1px solid #c3e6cb;
+    color: var(--text-color);
+}
+
+.error {
+    border: 1px solid #f5c6cb;
+    color: var(--text-color);
+}
+
+.hidden {
+    display: none;
+}
+
+.preview {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-family: monospace;
+}

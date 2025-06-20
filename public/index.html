@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handle Creator - <span id="titleDomain">loading...</span></title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1><span class="logo">☕</span> <span id="handleText"></span></h1>
+    <h2>Handle Creator</h2>
+    
+    <form id="handleForm">
+        <div>
+            <label for="handle">Choose your handle:</label>
+            <input type="text" id="handle" placeholder="yourname" required pattern="[a-zA-Z0-9._-]+">
+            <div class="preview hidden" id="handlePreview">
+                Preview: <span id="previewText"></span>.<span id="domainText">loading...</span>
+            </div>
+        </div>
+        
+        <button type="button" id="checkBtn" onclick="checkHandle()">Check Availability</button>
+         
+
+        <div id="didSection" class="hidden">
+            <div>
+                <label for="did">Your DID (Decentralized Identifier):</label>
+                <input type="text" id="did" placeholder="did:plc:..." pattern="did:.*">
+                <small>Your DID can be found in your Bluesky app settings.</small>
+            </div>
+            
+            <button type="button" id="createBtn" onclick="createHandle()" disabled>Create Handle</button>
+        </div>
+    </form>
+    
+    <div id="result" class="hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
