@@ -2,7 +2,6 @@ let canCreateHandle = false;
 let isLoading = false;
 let domain = "";
 
-// Load domain configuration on page load
 async function loadConfig() {
   try {
     const response = await fetch("/config");
@@ -19,10 +18,8 @@ async function loadConfig() {
   }
 }
 
-// Load config when page loads
 loadConfig();
 
-// Handle preview functionality
 document.getElementById("handle").addEventListener("input", function (e) {
   const handle = e.target.value.trim();
   const preview = document.getElementById("handlePreview");
@@ -36,20 +33,19 @@ document.getElementById("handle").addEventListener("input", function (e) {
   }
 });
 
-// DID paste functionality
 document.getElementById("did").addEventListener("paste", function (e) {
   setTimeout(() => {
     const pastedValue = e.target.value;
+
     if (pastedValue.includes("did=")) {
       const didMatch = pastedValue.match(/did=([^&\s]+)/);
       if (didMatch && didMatch[1]) {
         const extractedDid = didMatch[1];
-        // Format as did=did:plc:...
-        if (extractedDid.startsWith("did:")) {
-          e.target.value = `did=${extractedDid}`;
-        } else {
-          e.target.value = `did=did:${extractedDid}`;
-        }
+        console.log("Extracted DID:", extractedDid);
+
+        e.target.value = "";
+
+        e.target.value = extractedDid;
         e.target.dispatchEvent(new Event("input"));
       }
     }
@@ -190,7 +186,6 @@ async function createHandle() {
   }
 }
 
-// Keyboard navigation
 document.getElementById("handle").addEventListener("keypress", function (e) {
   if (e.key === "Enter" && !isLoading) {
     checkHandle();

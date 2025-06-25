@@ -135,7 +135,8 @@ app.post("/create-handle", async (req, res) => {
   try {
     const response = await apiCheckHandleAvailable({ handle, did });
     if (response.status === "SUCCESS") {
-      const createResponse = await apiCreateHandle({ handle, did });
+      const passedDid = did.replace("did=", "").replace("did:plc:", "");
+      const createResponse = await apiCreateHandle({ handle, did: passedDid });
 
       if (createResponse.status === "SUCCESS") {
         res.json({
