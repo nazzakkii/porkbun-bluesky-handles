@@ -42,7 +42,7 @@ const apiCreateHandle = async ({ handle, did }) => {
         secretapikey: API_SECRET,
         name: `_atproto.${handle}`,
         type: "TXT",
-        content: `did:plc:${did}`,
+        content: did,
         ttl: 600,
       }),
     }
@@ -132,11 +132,17 @@ app.post("/create-handle", async (req, res) => {
     });
   }
 
+  if (!did.includes("did=did:plc:")) {
+    return res.status(400).json({
+      status: "ERROR",
+      message: "DID must be in the format did=did:plc:...",
+    });
+  }
+
   try {
     const response = await apiCheckHandleAvailable({ handle, did });
     if (response.status === "SUCCESS") {
-      const passedDid = did.replace("did=", "").replace("did:plc:", "");
-      const createResponse = await apiCreateHandle({ handle, did: passedDid });
+      const createResponse = await apiCreateHandle({ handle, did });
 
       if (createResponse.status === "SUCCESS") {
         res.json({

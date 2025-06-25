@@ -142,15 +142,22 @@ async function createHandle() {
   if (isLoading || !canCreateHandle) return;
 
   const handle = document.getElementById("handle").value.trim();
-  const did = document.getElementById("did").value.trim();
+  let did = document.getElementById("did").value.trim();
 
   if (!did) {
     showResult("Please enter a DID to create the handle.", false);
     return;
   }
 
-  if (!did.startsWith("did:")) {
-    showResult('DID must start with "did:".', false);
+  if (did.startsWith("did:plc:")) {
+    did = `did=${did}`;
+  }
+
+  if (!did.startsWith("did=did:plc:")) {
+    showResult(
+      'DID must start with "did:plc:" or be in format "did=did:plc:...".',
+      false
+    );
     return;
   }
 
